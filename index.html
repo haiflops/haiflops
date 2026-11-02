@@ -4,24 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HAIFLOPS | 하이플롭스</title>
-<meta name="description" content="주식회사 하이플롭스(HAIFLOPS Inc.)는 모바일·온라인 게임을 만드는 게임 개발 스튜디오입니다.">
+<meta name="description" content="주식회사 하이플롭스(HAIFLOPS Inc.)는 PC 게임을 만드는 성남의 게임 개발 스튜디오입니다.">
 <meta property="og:title" content="HAIFLOPS | 하이플롭스">
-<meta property="og:description" content="Game development studio based in Seongnam, Korea.">
+<meta property="og:description" content="PC game development studio based in Seongnam, Korea.">
 <meta property="og:type" content="website">
+<meta name="theme-color" content="#0f0c10">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0b0d17;
-    --bg-2: #12152a;
-    --text: #eef0ff;
-    --muted: #9aa0c3;
-    --line: #262a48;
-    --accent: #7c5cff;
-    --accent-2: #22d3ee;
-    --card: #151936;
+    --bg: #0f0c10;
+    --bg-2: #151116;
+    --card: #1b161c;
+    --line: #2e272f;
+    --text: #ece6e7;
+    --muted: #a39a9b;
+    --moon: #aea5a6;
+    --blood: #9e4442;
+    --blood-lit: #d9837e;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -29,99 +31,177 @@
     background: var(--bg);
     color: var(--text);
     font-family: "Noto Sans KR", system-ui, sans-serif;
-    line-height: 1.7;
+    font-weight: 400;
+    line-height: 1.75;
     -webkit-font-smoothing: antialiased;
   }
   a { color: inherit; text-decoration: none; }
-  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 32px; }
+  .en-font { font-family: "Space Grotesk", sans-serif; }
 
   header {
-    position: sticky; top: 0; z-index: 10;
-    background: rgba(11, 13, 23, 0.8);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line);
+    position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+    background: rgba(15, 12, 16, 0.72);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(46, 39, 47, 0.7);
   }
-  .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-  .logo { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 22px; letter-spacing: 0.04em; }
-  .logo span { color: var(--accent); }
-  .nav ul { display: flex; gap: 28px; list-style: none; font-size: 15px; color: var(--muted); }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 24px; }
+  .logo { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 20px; letter-spacing: 0.08em; }
+  .logo span { color: var(--blood); }
+  .nav ul { display: flex; gap: 40px; list-style: none; }
+  .nav ul a {
+    font-family: "Space Grotesk", sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0.18em;
+    color: var(--muted); transition: color 0.2s;
+  }
   .nav ul a:hover { color: var(--text); }
-  .lang { border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; font-size: 13px; color: var(--muted); cursor: pointer; background: none; }
+  .lang {
+    border: 1px solid var(--line); border-radius: 999px; padding: 5px 14px; font-size: 12px;
+    color: var(--muted); cursor: pointer; background: none; font-family: inherit;
+  }
   .lang:hover { color: var(--text); border-color: var(--muted); }
 
-  .hero { position: relative; padding: 140px 0 120px; overflow: hidden; }
-  .hero::before {
-    content: ""; position: absolute; inset: -40% -20% auto auto; width: 720px; height: 720px;
-    background: radial-gradient(circle, rgba(124, 92, 255, 0.35), transparent 65%);
-    pointer-events: none;
+  .hero {
+    position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden;
+    padding: 120px 0 80px;
+    background:
+      radial-gradient(circle at 72% 42%, rgba(174, 165, 166, 0.16), transparent 34%),
+      radial-gradient(circle at 72% 60%, rgba(158, 68, 66, 0.18), transparent 46%),
+      var(--bg);
   }
-  .hero::after {
-    content: ""; position: absolute; left: -200px; bottom: -300px; width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 65%);
-    pointer-events: none;
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; width: 100%; }
+  .eyebrow {
+    font-family: "Space Grotesk", sans-serif; font-size: 12px; font-weight: 500;
+    letter-spacing: 0.28em; text-transform: uppercase; color: var(--moon);
   }
-  .eyebrow { font-family: "Space Grotesk", sans-serif; color: var(--accent-2); font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; }
-  .hero h1 { font-size: clamp(40px, 7vw, 76px); font-weight: 900; line-height: 1.15; margin: 18px 0 24px; letter-spacing: -0.02em; }
-  .hero h1 em {
-    font-style: normal;
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
+  .hero h1 {
+    font-size: clamp(36px, 5.4vw, 64px); font-weight: 700; line-height: 1.25;
+    letter-spacing: -0.02em; margin: 24px 0 28px;
   }
-  .hero p { max-width: 560px; color: var(--muted); font-size: 18px; }
-  .btn {
-    display: inline-block; margin-top: 36px; padding: 14px 28px; border-radius: 12px;
-    background: var(--accent); color: #fff; font-weight: 700; transition: transform 0.15s, box-shadow 0.15s;
+  .hero h1 em { font-style: normal; color: var(--blood-lit); }
+  .hero p { max-width: 480px; color: var(--muted); font-size: 17px; font-weight: 300; }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 12px; margin-top: 44px; padding-bottom: 6px;
+    border-bottom: 1px solid var(--moon);
+    font-family: "Space Grotesk", sans-serif; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
   }
-  .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(124, 92, 255, 0.4); }
+  .hero-cta:hover { color: var(--blood-lit); border-color: var(--blood-lit); }
+  .hero-art { display: grid; place-items: center; }
+  .hero-art svg { width: min(100%, 440px); }
+  .umbrella { animation: drift 7s ease-in-out infinite; transform-origin: 50% 40%; }
+  @keyframes drift {
+    0%, 100% { transform: translateY(0) rotate(-4deg); }
+    50% { transform: translateY(-10px) rotate(3deg); }
+  }
+  .scroll-hint {
+    position: absolute; left: 50%; bottom: 32px; transform: translateX(-50%);
+    width: 1px; height: 48px; background: linear-gradient(var(--moon), transparent);
+  }
 
-  section { padding: 100px 0; border-top: 1px solid var(--line); }
-  h2 { font-size: clamp(28px, 4vw, 40px); font-weight: 900; margin-bottom: 16px; letter-spacing: -0.01em; }
-  .lead { color: var(--muted); max-width: 640px; margin-bottom: 48px; }
+  section { padding: 140px 0; border-top: 1px solid var(--line); }
+  .sec-head { margin-bottom: 64px; }
+  .sec-head h2 { font-size: clamp(28px, 3.6vw, 40px); font-weight: 700; letter-spacing: -0.01em; margin-top: 14px; }
+  .sec-head p { color: var(--muted); max-width: 620px; margin-top: 16px; font-weight: 300; font-size: 17px; }
 
-  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 32px 28px; }
-  .card .icon {
-    width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; font-size: 24px;
-    background: linear-gradient(135deg, rgba(124, 92, 255, 0.25), rgba(34, 211, 238, 0.2)); margin-bottom: 20px;
-  }
-  .card h3 { font-size: 19px; margin-bottom: 8px; }
-  .card p { color: var(--muted); font-size: 15px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+  .cell { background: var(--bg); padding: 40px 32px 44px; }
+  .cell .num { font-family: "Space Grotesk", sans-serif; font-size: 13px; color: var(--blood-lit); letter-spacing: 0.12em; }
+  .cell h3 { font-size: 20px; font-weight: 500; margin: 20px 0 10px; }
+  .cell p { color: var(--muted); font-size: 15px; font-weight: 300; }
 
   .games { background: var(--bg-2); }
-  .coming {
-    border: 1px dashed var(--line); border-radius: 18px; padding: 64px 24px; text-align: center; color: var(--muted);
+  .teaser {
+    display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;
+    border: 1px solid var(--line); background: var(--card);
   }
-  .coming strong { display: block; font-family: "Space Grotesk", sans-serif; font-size: 28px; color: var(--text); margin-bottom: 8px; }
+  .teaser-art {
+    display: grid; place-items: center; aspect-ratio: 1; border-right: 1px solid var(--line);
+    background: radial-gradient(circle at 50% 38%, rgba(174, 165, 166, 0.2), transparent 60%), var(--bg);
+  }
+  .teaser-art svg { width: 60%; }
+  .teaser-body { padding: 56px 52px; display: flex; flex-direction: column; justify-content: center; }
+  .status {
+    display: inline-flex; align-items: center; gap: 10px; color: var(--moon);
+    font-family: "Space Grotesk", sans-serif; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .status::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--blood);
+    box-shadow: 0 0 0 4px rgba(158, 68, 66, 0.28);
+  }
+  .genre { font-family: "Space Grotesk", sans-serif; font-size: clamp(36px, 4.6vw, 56px); font-weight: 700; line-height: 1.1; margin: 20px 0 6px; }
+  .genre-sub { color: var(--moon); font-size: 18px; font-weight: 300; }
+  .teaser-meta { display: flex; gap: 32px; margin-top: 40px; padding-top: 28px; border-top: 1px solid var(--line); }
+  .teaser-meta dt { font-family: "Space Grotesk", sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
+  .teaser-meta dd { margin-top: 4px; }
+  .teaser-note { color: var(--muted); margin-top: 28px; font-weight: 300; }
 
-  .info { display: grid; grid-template-columns: 160px 1fr; gap: 14px 24px; font-size: 15px; }
-  .info dt { color: var(--muted); }
-  .info a, footer a { color: var(--accent-2); }
-  .info a:hover, footer a:hover { text-decoration: underline; }
+  .info { display: grid; grid-template-columns: 180px 1fr; border-top: 1px solid var(--line); }
+  .info dt, .info dd { padding: 22px 0; border-bottom: 1px solid var(--line); }
+  .info dt { color: var(--muted); font-size: 14px; }
+  .info dd { font-weight: 300; }
+  .info a { color: var(--blood-lit); }
+  .info a:hover { text-decoration: underline; }
 
-  footer { border-top: 1px solid var(--line); padding: 40px 0; color: var(--muted); font-size: 13px; }
-  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer { border-top: 1px solid var(--line); padding: 48px 0 56px; color: var(--muted); font-size: 13px; font-weight: 300; }
+  footer .wrap { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 16px; }
+  footer .logo { font-size: 16px; color: var(--text); }
+  footer p + p { margin-top: 2px; }
 
   [data-lang="en"] .ko, [data-lang="ko"] .en { display: none; }
 
-  @media (max-width: 760px) {
-    .nav ul { display: none; }
-    .hero { padding: 96px 0 80px; }
-    section { padding: 72px 0; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .umbrella { animation: none; }
+  }
+  @media (max-width: 860px) {
+    .hero .wrap { grid-template-columns: 1fr; }
+    .hero-art { order: -1; }
+    .hero-art svg { width: min(70%, 300px); }
     .grid { grid-template-columns: 1fr; }
-    .info { grid-template-columns: 1fr; gap: 2px; }
-    .info dd { margin-bottom: 14px; }
+    .teaser { grid-template-columns: 1fr; }
+    .teaser-art { border-right: 0; border-bottom: 1px solid var(--line); aspect-ratio: 16 / 10; }
+    .teaser-art svg { width: 38%; }
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 0 20px; }
+    .nav { height: auto; flex-wrap: wrap; padding-top: 14px; padding-bottom: 12px; row-gap: 8px; }
+    .nav ul { order: 3; width: 100%; gap: 28px; }
+    .nav ul a { font-size: 12px; }
+    .hero { padding: 132px 0 72px; min-height: auto; }
+    .scroll-hint { display: none; }
+    section { padding: 88px 0; }
+    .sec-head { margin-bottom: 40px; }
+    .cell { padding: 32px 24px; }
+    .teaser-body { padding: 36px 24px; }
+    .info { grid-template-columns: 1fr; }
+    .info dt { padding: 18px 0 0; border-bottom: 0; }
+    .info dd { padding: 4px 0 18px; }
   }
 </style>
 </head>
 <body data-lang="ko">
 
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="canopy" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b5524e"/>
+      <stop offset="1" stop-color="#5a2a2e"/>
+    </linearGradient>
+    <symbol id="umbrella" viewBox="0 0 200 200">
+      <path d="M100 28 V14" stroke="#aea5a6" stroke-width="4" stroke-linecap="round"/>
+      <path d="M16 104 C24 50 70 28 100 28 C130 28 176 50 184 104 Q167 90 150 104 Q133 90 117 104 Q100 90 83 104 Q67 90 50 104 Q33 90 16 104 Z" fill="url(#canopy)"/>
+      <path d="M100 30 Q62 52 50 102 M100 30 Q86 60 83 102 M100 30 Q114 60 117 102 M100 30 Q138 52 150 102" fill="none" stroke="#1c161c" stroke-opacity="0.45" stroke-width="2"/>
+      <path d="M100 104 V164 A12 12 0 0 1 76 164" fill="none" stroke="#aea5a6" stroke-width="6" stroke-linecap="round"/>
+    </symbol>
+  </defs>
+</svg>
+
 <header>
   <div class="wrap nav">
     <a href="#" class="logo">HAIFLOPS<span>.</span></a>
     <ul>
-      <li><a href="#about"><span class="ko">회사 소개</span><span class="en">About</span></a></li>
-      <li><a href="#games"><span class="ko">게임</span><span class="en">Games</span></a></li>
-      <li><a href="#company"><span class="ko">회사 정보</span><span class="en">Company</span></a></li>
+      <li><a href="#company">COMPANY</a></li>
+      <li><a href="#games">GAMES</a></li>
+      <li><a href="#contact">CONTACT</a></li>
     </ul>
     <button class="lang" id="langBtn" type="button">EN</button>
   </div>
@@ -130,39 +210,50 @@
 <main>
   <div class="hero">
     <div class="wrap">
-      <div class="eyebrow">Game Development Studio</div>
-      <h1 class="ko">즐거움을 만드는<br><em>하이플롭스</em></h1>
-      <h1 class="en">We make<br><em>games that play.</em></h1>
-      <p class="ko">하이플롭스는 누구나 쉽게 즐길 수 있는 모바일·온라인 게임을 만드는 게임 개발 스튜디오입니다.</p>
-      <p class="en">HAIFLOPS is a game development studio creating mobile and online games anyone can pick up and enjoy.</p>
-      <a href="#games" class="btn"><span class="ko">게임 보러 가기</span><span class="en">See our games</span></a>
+      <div>
+        <div class="eyebrow">HAIFLOPS Inc. · Game Studio</div>
+        <h1 class="ko">오래 기억에 남는<br>게임을 <em>만듭니다</em></h1>
+        <h1 class="en">Games worth<br><em>remembering.</em></h1>
+        <p class="ko">하이플롭스는 PC 게임을 만드는 성남의 게임 개발 스튜디오입니다. 첫 번째 게임을 개발하고 있습니다.</p>
+        <p class="en">HAIFLOPS is a PC game studio based in Seongnam, Korea. Our first title is in development.</p>
+        <a href="#games" class="hero-cta"><span class="ko">개발 중인 게임</span><span class="en">Our first title</span> →</a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <svg viewBox="0 0 200 200" style="filter: drop-shadow(0 18px 40px rgba(158, 68, 66, 0.45));">
+          <g class="umbrella"><use href="#umbrella"/></g>
+        </svg>
+      </div>
     </div>
+    <div class="scroll-hint" aria-hidden="true"></div>
   </div>
 
-  <section id="about">
+  <section id="company">
     <div class="wrap">
-      <h2 class="ko">우리가 하는 일</h2>
-      <h2 class="en">What we do</h2>
-      <p class="lead ko">기획, 개발, 아트까지 작은 팀이 직접 만들고 직접 서비스합니다.</p>
-      <p class="lead en">A small team that designs, builds, draws and runs its own games.</p>
+      <div class="sec-head">
+        <div class="eyebrow">Company</div>
+        <h2 class="ko">회사 소개</h2>
+        <h2 class="en">About Us</h2>
+        <p class="ko">작은 팀이 기획부터 개발, 아트, 서비스까지 직접 합니다. 플레이어가 오래 기억할 한 편의 게임을 만드는 데 집중합니다.</p>
+        <p class="en">A small team that plans, builds, draws and ships its own games, focused on making titles players remember.</p>
+      </div>
       <div class="grid">
-        <div class="card">
-          <div class="icon">🎮</div>
-          <h3 class="ko">게임 개발</h3><h3 class="en">Game Development</h3>
-          <p class="ko">모바일과 PC 플랫폼에서 즐길 수 있는 게임을 개발합니다.</p>
-          <p class="en">Games for mobile and PC platforms.</p>
+        <div class="cell">
+          <div class="num">01</div>
+          <h3 class="ko">PC 게임 개발</h3><h3 class="en">PC Games</h3>
+          <p class="ko">PC 플랫폼을 중심으로 게임을 개발합니다.</p>
+          <p class="en">We build games for PC first.</p>
         </div>
-        <div class="card">
-          <div class="icon">🎨</div>
-          <h3 class="ko">아트 &amp; 디자인</h3><h3 class="en">Art &amp; Design</h3>
-          <p class="ko">개성 있는 캐릭터와 세계관을 직접 디자인합니다.</p>
-          <p class="en">Original characters and worlds, designed in-house.</p>
+        <div class="cell">
+          <div class="num">02</div>
+          <h3 class="ko">자체 기술</h3><h3 class="en">In-house Tech</h3>
+          <p class="ko">직접 만든 엔진과 개발 도구로 빠르게 만들고 고칩니다.</p>
+          <p class="en">Our own engine and tools let us build and iterate fast.</p>
         </div>
-        <div class="card">
-          <div class="icon">🌏</div>
-          <h3 class="ko">글로벌 서비스</h3><h3 class="en">Global Publishing</h3>
-          <p class="ko">Google Play, App Store, Steam을 통해 전 세계에 서비스합니다.</p>
-          <p class="en">Shipping worldwide on Google Play, the App Store and Steam.</p>
+        <div class="cell">
+          <div class="num">03</div>
+          <h3 class="ko">글로벌 서비스</h3><h3 class="en">Global Release</h3>
+          <p class="ko">Steam을 통해 전 세계 플레이어에게 선보입니다.</p>
+          <p class="en">Released worldwide on Steam.</p>
         </div>
       </div>
     </div>
@@ -170,32 +261,47 @@
 
   <section id="games" class="games">
     <div class="wrap">
-      <h2 class="ko">게임</h2>
-      <h2 class="en">Games</h2>
-      <p class="lead ko">첫 번째 게임을 준비하고 있습니다.</p>
-      <p class="lead en">Our first title is in development.</p>
-      <div class="coming">
-        <strong>Coming Soon</strong>
-        <span class="ko">곧 공개합니다. 조금만 기다려 주세요.</span>
-        <span class="en">Stay tuned.</span>
+      <div class="sec-head">
+        <div class="eyebrow">Games</div>
+        <h2 class="ko">게임</h2>
+        <h2 class="en">Games</h2>
+      </div>
+      <div class="teaser">
+        <div class="teaser-art" aria-hidden="true">
+          <svg viewBox="0 0 200 200" style="filter: drop-shadow(0 12px 30px rgba(158, 68, 66, 0.5));">
+            <g class="umbrella"><use href="#umbrella"/></g>
+          </svg>
+        </div>
+        <div class="teaser-body">
+          <span class="status">Now in development</span>
+          <div class="genre">Metroidvania</div>
+          <div class="genre-sub ko">메트로배니아</div>
+          <dl class="teaser-meta">
+            <div><dt>Platform</dt><dd>PC (Steam)</dd></div>
+            <div><dt>Status</dt><dd class="ko">개발 중</dd><dd class="en">In development</dd></div>
+          </dl>
+          <p class="teaser-note ko">더 많은 이야기는 곧 공개합니다.</p>
+          <p class="teaser-note en">More to come soon.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="company">
+  <section id="contact">
     <div class="wrap">
-      <h2 class="ko">회사 정보</h2>
-      <h2 class="en">Company</h2>
+      <div class="sec-head">
+        <div class="eyebrow">Contact</div>
+        <h2 class="ko">회사 정보</h2>
+        <h2 class="en">Company Information</h2>
+      </div>
       <dl class="info ko">
         <dt>상호</dt><dd>주식회사 하이플롭스</dd>
-        <dt>대표이사</dt><dd>박영찬</dd>
-        <dt>주소</dt><dd>경기도 성남시 분당구 내정로173번길 11, 양지마을상가 603동 2층 228-비01호 (13597)</dd>
+        <dt>주소</dt><dd>경기도 성남시 분당구 내정로173번길 11</dd>
         <dt>문의</dt><dd><a href="mailto:haiflops.biz@gmail.com">haiflops.biz@gmail.com</a></dd>
       </dl>
       <dl class="info en">
         <dt>Company</dt><dd>HAIFLOPS Inc.</dd>
-        <dt>CEO</dt><dd>Youngchan Park</dd>
-        <dt>Address</dt><dd>Rm 228-B01, 2F, Yangji Maeul Shopping Center Bldg 603, 11, Naejeong-ro 173beon-gil, Bundang-gu, Seongnam-si, Gyeonggi-do 13597, Republic of Korea</dd>
+        <dt>Address</dt><dd>11 Naejeong-ro 173beon-gil, Bundang-gu, Seongnam-si, Gyeonggi-do, Republic of Korea</dd>
         <dt>Contact</dt><dd><a href="mailto:haiflops.biz@gmail.com">haiflops.biz@gmail.com</a></dd>
       </dl>
     </div>
@@ -204,9 +310,12 @@
 
 <footer>
   <div class="wrap">
-    <a href="mailto:haiflops.biz@gmail.com">haiflops.biz@gmail.com</a>
-    <span>© <span id="year">2026</span> HAIFLOPS Inc. All rights reserved.</span>
-    <span class="ko">주식회사 하이플롭스</span><span class="en">Seongnam, Republic of Korea</span>
+    <div>
+      <div class="logo">HAIFLOPS<span>.</span></div>
+      <p class="ko">주식회사 하이플롭스 · 대표이사 박영찬 · 사업자등록번호 542-88-04129</p>
+      <p class="en">HAIFLOPS Inc. · CEO PARK YOUNG CHAN · Seongnam, Republic of Korea</p>
+    </div>
+    <p>© <span id="year">2026</span> HAIFLOPS Inc. All rights reserved.</p>
   </div>
 </footer>
 
