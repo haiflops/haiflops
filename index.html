@@ -8,6 +8,7 @@
 <meta property="og:title" content="HAIFLOPS | 하이플롭스">
 <meta property="og:description" content="PC game development studio based in Seongnam, Korea.">
 <meta property="og:type" content="website">
+<meta property="og:image" content="https://thuul21.github.io/haiflops/door302.jpg">
 <meta name="theme-color" content="#0f0c10">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -109,16 +110,10 @@
   .cell p { color: var(--muted); font-size: 15px; font-weight: 300; }
 
   .games { background: var(--bg-2); }
-  .teaser {
-    display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;
-    border: 1px solid var(--line); background: var(--card);
-  }
-  .teaser-art {
-    display: grid; place-items: center; aspect-ratio: 1; border-right: 1px solid var(--line);
-    background: radial-gradient(circle at 50% 38%, rgba(174, 165, 166, 0.2), transparent 60%), var(--bg);
-  }
-  .teaser-art svg { width: 60%; }
-  .teaser-body { padding: 56px 52px; display: flex; flex-direction: column; justify-content: center; }
+  .teaser { border: 1px solid var(--line); background: var(--card); }
+  .teaser-art { border-bottom: 1px solid var(--line); background: var(--bg); }
+  .teaser-art img { display: block; width: 100%; height: auto; }
+  .teaser-body { padding: 44px 52px 48px; }
   .status {
     display: inline-flex; align-items: center; gap: 10px; color: var(--moon);
     font-family: "Space Grotesk", sans-serif; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
@@ -157,9 +152,6 @@
     .hero-art { order: -1; }
     .hero-art svg { width: min(70%, 300px); }
     .grid { grid-template-columns: 1fr; }
-    .teaser { grid-template-columns: 1fr; }
-    .teaser-art { border-right: 0; border-bottom: 1px solid var(--line); aspect-ratio: 16 / 10; }
-    .teaser-art svg { width: 38%; }
   }
   @media (max-width: 640px) {
     .wrap { padding: 0 20px; }
@@ -268,16 +260,18 @@
         <h2 class="en">Games</h2>
       </div>
       <div class="teaser">
-        <div class="teaser-art" aria-hidden="true">
-          <svg viewBox="0 0 200 200" style="filter: drop-shadow(0 12px 30px rgba(158, 68, 66, 0.5));">
-            <g class="umbrella"><use href="#umbrella"/></g>
-          </svg>
+        <div class="teaser-art">
+          <img src="door302.jpg" width="1672" height="941" loading="lazy"
+               alt="DOOR.302 타이틀 화면 — 어두운 방, 빛이 새어 나오는 열린 문과 우산">
         </div>
         <div class="teaser-body">
-          <span class="status">Now in development</span>
-          <div class="genre">Metroidvania</div>
-          <div class="genre-sub ko">메트로배니아</div>
+          <div>
+            <span class="status">Now in development</span>
+            <div class="genre">DOOR.302</div>
+            <div class="genre-sub">another door</div>
+          </div>
           <dl class="teaser-meta">
+            <div><dt>Genre</dt><dd class="ko">메트로배니아</dd><dd class="en">Metroidvania</dd></div>
             <div><dt>Platform</dt><dd>PC (Steam)</dd></div>
             <div><dt>Status</dt><dd class="ko">개발 중</dd><dd class="en">In development</dd></div>
           </dl>
