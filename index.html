@@ -100,14 +100,22 @@
   .lang:hover { color: var(--text); border-color: var(--muted); }
 
   .hero {
-    position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden;
-    padding: 120px 0 80px;
+    position: relative; overflow: hidden;
+    padding: 148px 0 0;
     background:
       radial-gradient(circle at 70% 46%, var(--door-glow), transparent 42%),
       radial-gradient(circle at 74% 70%, var(--glow-2), transparent 40%),
       var(--bg);
   }
-  .hero .wrap { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 56px; align-items: center; width: 100%; }
+  .hero-grid { display: grid; grid-template-columns: 0.78fr 1.22fr; gap: 64px; align-items: center; }
+  .hero-meta {
+    display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 88px;
+    border-top: 1px solid var(--line);
+  }
+  .hero-meta div { padding: 26px 0 34px; }
+  .hero-meta div + div { padding-left: 28px; border-left: 1px solid var(--line); }
+  .hero-meta dt { font-family: "Space Grotesk", sans-serif; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--muted); }
+  .hero-meta dd { margin-top: 6px; font-size: 15px; }
   .eyebrow {
     font-family: "Space Grotesk", sans-serif; font-size: 12px; font-weight: 500;
     letter-spacing: 0.28em; text-transform: uppercase; color: var(--moon);
@@ -195,7 +203,10 @@
     .umbrella { animation: none; }
   }
   @media (max-width: 860px) {
-    .hero .wrap { grid-template-columns: 1fr; }
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero-meta { grid-template-columns: repeat(2, 1fr); margin-top: 56px; }
+    .hero-meta div:nth-child(3) { padding-left: 0; border-left: 0; }
+    .hero-meta div:nth-child(n+3) { border-top: 1px solid var(--line); }
     .hero-art { order: -1; }
     .grid { grid-template-columns: 1fr; }
   }
@@ -205,7 +216,7 @@
     .nav ul { order: 3; width: 100%; gap: 28px; }
     .nav ul a { font-size: 12px; }
     .logo img { height: 44px; }
-    .hero { padding: 132px 0 72px; min-height: auto; }
+    .hero { padding: 120px 0 0; }
     .scroll-hint { display: none; }
     section { padding: 88px 0; }
     .sec-head { margin-bottom: 40px; }
@@ -248,7 +259,7 @@
 
 <main>
   <div class="hero">
-    <div class="wrap">
+    <div class="wrap hero-grid">
       <div>
         <span class="status">Now in development</span>
         <h1 class="title">DOOR<em>.</em>302</h1>
@@ -263,7 +274,14 @@
         <figcaption><span>DOOR.302 · Title screen</span><span>PC (Steam)</span></figcaption>
       </figure>
     </div>
-    <div class="scroll-hint" aria-hidden="true"></div>
+    <div class="wrap">
+      <dl class="hero-meta">
+        <div><dt>Genre</dt><dd class="ko">메트로배니아</dd><dd class="en">Metroidvania</dd></div>
+        <div><dt>Platform</dt><dd>PC (Steam)</dd></div>
+        <div><dt>Status</dt><dd class="ko">개발 중</dd><dd class="en">In development</dd></div>
+        <div><dt>Studio</dt><dd>HAIFLOPS Inc.</dd></div>
+      </dl>
+    </div>
   </div>
 
   <section id="company">
