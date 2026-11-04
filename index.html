@@ -38,6 +38,7 @@
     --canopy-2: #9c150b;
     --stick: #3a3431;
     --rib: #201d1c;
+    --door-glow: rgba(46, 170, 165, 0.20);
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -60,6 +61,7 @@
       --canopy-2: #7c1209;
       --stick: #d2cac2;
       --rib: #121010;
+      --door-glow: rgba(70, 225, 215, 0.16);
     }
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -101,11 +103,11 @@
     position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden;
     padding: 120px 0 80px;
     background:
-      radial-gradient(circle at 72% 42%, var(--glow-1), transparent 34%),
-      radial-gradient(circle at 72% 60%, var(--glow-2), transparent 46%),
+      radial-gradient(circle at 70% 46%, var(--door-glow), transparent 42%),
+      radial-gradient(circle at 74% 70%, var(--glow-2), transparent 40%),
       var(--bg);
   }
-  .hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; width: 100%; }
+  .hero .wrap { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 56px; align-items: center; width: 100%; }
   .eyebrow {
     font-family: "Space Grotesk", sans-serif; font-size: 12px; font-weight: 500;
     letter-spacing: 0.28em; text-transform: uppercase; color: var(--moon);
@@ -122,8 +124,17 @@
     font-family: "Space Grotesk", sans-serif; font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase;
   }
   .hero-cta:hover { color: var(--blood-lit); border-color: var(--blood-lit); }
-  .hero-art { display: grid; place-items: center; }
-  .hero-art svg { width: min(100%, 440px); }
+  .hero-art { margin: 0; }
+  .hero-art img {
+    display: block; width: 100%; height: auto; border-radius: 6px; border: 1px solid var(--line);
+    box-shadow: 0 30px 80px -20px var(--door-glow), 0 12px 30px rgba(0, 0, 0, 0.35);
+  }
+  .hero-art figcaption {
+    margin-top: 14px; display: flex; justify-content: space-between; gap: 16px;
+    font-family: "Space Grotesk", sans-serif; font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted);
+  }
+  .hero h1.title { font-family: "Space Grotesk", sans-serif; letter-spacing: 0; line-height: 1.05; margin: 22px 0 10px; }
+  .hero .subtitle { font-family: "Space Grotesk", sans-serif; color: var(--moon); font-size: 18px; letter-spacing: 0.32em; margin-bottom: 26px; }
   .umbrella { animation: drift 7s ease-in-out infinite; transform-origin: 50% 40%; }
   @keyframes drift {
     0%, 100% { transform: translateY(0) rotate(-4deg); }
@@ -186,7 +197,6 @@
   @media (max-width: 860px) {
     .hero .wrap { grid-template-columns: 1fr; }
     .hero-art { order: -1; }
-    .hero-art svg { width: min(70%, 300px); }
     .grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
@@ -240,18 +250,18 @@
   <div class="hero">
     <div class="wrap">
       <div>
-        <div class="eyebrow">HAIFLOPS Inc. · Game Studio</div>
-        <h1 class="ko">오래 기억에 남는<br>게임을 <em>만듭니다</em></h1>
-        <h1 class="en">Games worth<br><em>remembering.</em></h1>
-        <p class="ko">하이플롭스는 PC 게임을 만드는 성남의 게임 개발 스튜디오입니다. 첫 번째 게임을 개발하고 있습니다.</p>
-        <p class="en">HAIFLOPS is a PC game studio based in Seongnam, Korea. Our first title is in development.</p>
-        <a href="#games" class="hero-cta"><span class="ko">개발 중인 게임</span><span class="en">Our first title</span> →</a>
+        <span class="status">Now in development</span>
+        <h1 class="title">DOOR<em>.</em>302</h1>
+        <div class="subtitle">another door</div>
+        <p class="ko">하이플롭스의 첫 번째 게임. 302호의 문 너머로 이어지는 PC 메트로배니아입니다.</p>
+        <p class="en">HAIFLOPS' first title — a PC Metroidvania that begins behind the door of room 302.</p>
+        <a href="#games" class="hero-cta"><span class="ko">게임 소개</span><span class="en">About the game</span> →</a>
       </div>
-      <div class="hero-art" aria-hidden="true">
-        <svg viewBox="0 0 200 200" style="filter: drop-shadow(0 18px 40px var(--art-shadow));">
-          <g class="umbrella"><use href="#umbrella"/></g>
-        </svg>
-      </div>
+      <figure class="hero-art">
+        <img src="door302.jpg" width="1672" height="941"
+             alt="DOOR.302 타이틀 화면 — 어두운 방, 빛이 새어 나오는 열린 문과 우산">
+        <figcaption><span>DOOR.302 · Title screen</span><span>PC (Steam)</span></figcaption>
+      </figure>
     </div>
     <div class="scroll-hint" aria-hidden="true"></div>
   </div>
@@ -297,8 +307,8 @@
       </div>
       <div class="teaser">
         <div class="teaser-art">
-          <img src="door302.jpg" width="1672" height="941" loading="lazy"
-               alt="DOOR.302 타이틀 화면 — 어두운 방, 빛이 새어 나오는 열린 문과 우산">
+          <img src="door302_umbrella.jpg" width="1600" height="900" loading="lazy"
+               alt="DOOR.302 — 302호 문 옆에 세워져 있던 검은 우산">
         </div>
         <div class="teaser-body">
           <div>
