@@ -9,22 +9,58 @@
 <meta property="og:description" content="PC game development studio based in Seongnam, Korea.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://thuul21.github.io/haiflops/door302.jpg">
-<meta name="theme-color" content="#0f0c10">
+<meta name="theme-color" content="#f7f3ee" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121010" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+  /* 로고 색 기준: 먹 #201d1c · 주홍 #cc1c0f · 종이 #ece6e7. 기본은 밝게, 기기가 다크 모드면 어둡게 */
   :root {
-    --bg: #0f0c10;
-    --bg-2: #151116;
-    --card: #1b161c;
-    --line: #2e272f;
-    --text: #ece6e7;
-    --muted: #a39a9b;
-    --moon: #aea5a6;
-    --blood: #9e4442;
-    --blood-lit: #d9837e;
+    color-scheme: light dark;
+    --bg: #f7f3ee;
+    --bg-2: #efe9e2;
+    --card: #ffffff;
+    --line: #ddd4ca;
+    --text: #201d1c;
+    --muted: #6e655f;
+    --moon: #8a817a;
+    --blood: #cc1c0f;
+    --blood-lit: #b3170c;
+    --header-bg: rgba(247, 243, 238, 0.82);
+    --header-line: rgba(221, 212, 202, 0.9);
+    --glow-1: rgba(32, 29, 28, 0.05);
+    --glow-2: rgba(204, 28, 15, 0.10);
+    --dot-ring: rgba(204, 28, 15, 0.28);
+    --art-shadow: rgba(204, 28, 15, 0.28);
+    --canopy-1: #e2412f;
+    --canopy-2: #9c150b;
+    --stick: #3a3431;
+    --rib: #201d1c;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121010;
+      --bg-2: #181514;
+      --card: #1f1b1a;
+      --line: #322b29;
+      --text: #f3eee8;
+      --muted: #aaa29b;
+      --moon: #d2cac2;
+      --blood: #cc1c0f;
+      --blood-lit: #f0614e;
+      --header-bg: rgba(18, 16, 16, 0.76);
+      --header-line: rgba(50, 43, 41, 0.7);
+      --glow-1: rgba(210, 202, 194, 0.10);
+      --glow-2: rgba(204, 28, 15, 0.18);
+      --dot-ring: rgba(204, 28, 15, 0.28);
+      --art-shadow: rgba(204, 28, 15, 0.45);
+      --canopy-1: #e2412f;
+      --canopy-2: #7c1209;
+      --stick: #d2cac2;
+      --rib: #121010;
+    }
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -42,9 +78,9 @@
 
   header {
     position: fixed; top: 0; left: 0; right: 0; z-index: 10;
-    background: rgba(15, 12, 16, 0.72);
+    background: var(--header-bg);
     backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(46, 39, 47, 0.7);
+    border-bottom: 1px solid var(--header-line);
   }
   .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 24px; }
   .logo { display: inline-flex; align-items: center; }
@@ -65,8 +101,8 @@
     position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden;
     padding: 120px 0 80px;
     background:
-      radial-gradient(circle at 72% 42%, rgba(174, 165, 166, 0.16), transparent 34%),
-      radial-gradient(circle at 72% 60%, rgba(158, 68, 66, 0.18), transparent 46%),
+      radial-gradient(circle at 72% 42%, var(--glow-1), transparent 34%),
+      radial-gradient(circle at 72% 60%, var(--glow-2), transparent 46%),
       var(--bg);
   }
   .hero .wrap { display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; width: 100%; }
@@ -120,7 +156,7 @@
   }
   .status::before {
     content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--blood);
-    box-shadow: 0 0 0 4px rgba(158, 68, 66, 0.28);
+    box-shadow: 0 0 0 4px var(--dot-ring);
   }
   .genre { font-family: "Space Grotesk", sans-serif; font-size: clamp(36px, 4.6vw, 56px); font-weight: 700; line-height: 1.1; margin: 20px 0 6px; }
   .genre-sub { color: var(--moon); font-size: 18px; font-weight: 300; }
@@ -176,21 +212,21 @@
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <linearGradient id="canopy" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#b5524e"/>
-      <stop offset="1" stop-color="#5a2a2e"/>
+      <stop offset="0" style="stop-color: var(--canopy-1)"/>
+      <stop offset="1" style="stop-color: var(--canopy-2)"/>
     </linearGradient>
     <symbol id="umbrella" viewBox="0 0 200 200">
-      <path d="M100 28 V14" stroke="#aea5a6" stroke-width="4" stroke-linecap="round"/>
+      <path d="M100 28 V14" style="stroke: var(--stick)" stroke-width="4" stroke-linecap="round"/>
       <path d="M16 104 C24 50 70 28 100 28 C130 28 176 50 184 104 Q167 90 150 104 Q133 90 117 104 Q100 90 83 104 Q67 90 50 104 Q33 90 16 104 Z" fill="url(#canopy)"/>
-      <path d="M100 30 Q62 52 50 102 M100 30 Q86 60 83 102 M100 30 Q114 60 117 102 M100 30 Q138 52 150 102" fill="none" stroke="#1c161c" stroke-opacity="0.45" stroke-width="2"/>
-      <path d="M100 104 V164 A12 12 0 0 1 76 164" fill="none" stroke="#aea5a6" stroke-width="6" stroke-linecap="round"/>
+      <path d="M100 30 Q62 52 50 102 M100 30 Q86 60 83 102 M100 30 Q114 60 117 102 M100 30 Q138 52 150 102" fill="none" style="stroke: var(--rib)" stroke-opacity="0.45" stroke-width="2"/>
+      <path d="M100 104 V164 A12 12 0 0 1 76 164" fill="none" style="stroke: var(--stick)" stroke-width="6" stroke-linecap="round"/>
     </symbol>
   </defs>
 </svg>
 
 <header>
   <div class="wrap nav">
-    <a href="#" class="logo"><img src="logo-light.svg" alt="HAIFLOPS"></a>
+    <a href="#" class="logo"><picture><source srcset="logo-light.svg" media="(prefers-color-scheme: dark)"><img src="logo-dark.svg" alt="HAIFLOPS"></picture></a>
     <ul>
       <li><a href="#company">COMPANY</a></li>
       <li><a href="#games">GAMES</a></li>
@@ -212,7 +248,7 @@
         <a href="#games" class="hero-cta"><span class="ko">개발 중인 게임</span><span class="en">Our first title</span> →</a>
       </div>
       <div class="hero-art" aria-hidden="true">
-        <svg viewBox="0 0 200 200" style="filter: drop-shadow(0 18px 40px rgba(158, 68, 66, 0.45));">
+        <svg viewBox="0 0 200 200" style="filter: drop-shadow(0 18px 40px var(--art-shadow));">
           <g class="umbrella"><use href="#umbrella"/></g>
         </svg>
       </div>
@@ -306,7 +342,7 @@
 <footer>
   <div class="wrap">
     <div>
-      <div class="logo"><img src="logo-light.svg" alt="HAIFLOPS"></div>
+      <div class="logo"><picture><source srcset="logo-light.svg" media="(prefers-color-scheme: dark)"><img src="logo-dark.svg" alt="HAIFLOPS"></picture></div>
       <p class="ko">주식회사 하이플롭스 · 대표이사 박영찬 · 사업자등록번호 542-88-04129</p>
       <p class="en">HAIFLOPS Inc. · CEO PARK YOUNG CHAN · Seongnam, Republic of Korea</p>
     </div>
